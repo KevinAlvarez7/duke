@@ -99,10 +99,6 @@ public class Duke {
                     System.out.println("Now you have " + listSize + " task in the list.");
                 }
             }
-            else if (Input.equals(" ")){
-                continue;
-            }
-
         }
     }
 }
