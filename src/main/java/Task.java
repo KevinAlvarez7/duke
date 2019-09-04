@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+//A-classes
 public class Task {
     protected String desc;
     protected boolean isDone;
@@ -19,6 +20,5 @@ public class Task {
     public String getStatusIcon() {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
-
 
 }
