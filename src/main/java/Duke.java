@@ -37,6 +37,12 @@ public class Duke {
                 }
             }
             else if (inputs[0].equals("done")){
+                int inputSize = inputs.length;
+                if (inputSize == 1) {
+                    System.out.println("☹ OOPS!!! Sorry you'd have to include the index of your task.");
+                    continue;
+                }
+
                 int numIndex = Integer.parseInt(inputs[1]);
                 //Task number set the icon to done
                 todoList.get(numIndex-1).makeDone();
@@ -45,6 +51,11 @@ public class Duke {
                 System.out.println(printTask);
             }
             else if (inputs[0].equals("todo")) {
+                int inputSize = inputs.length;
+                if (inputSize == 1) {
+                    System.out.println("☹ OOPS!!! The description of a " + inputs[0] + " cannot be empty.");
+                    continue;
+                }
                 System.out.println("Got it. I've added this task: ");
                 String[] commandInfo = inputDateTime[0].split(" ", 2);
 //                String[] byInfo = inputDateTime[1].split(" ", 2);
@@ -64,6 +75,12 @@ public class Duke {
 
             }
             else if (inputs[0].equals("deadline")) {
+                int inputSize = inputs.length;
+                if (inputSize == 1) {
+                    System.out.println("☹ OOPS!!! The description of a " + inputs[0] + " cannot be empty.");
+                    continue;
+                }
+
                 System.out.println("Got it. I've added this task: ");
                 String[] commandInfo = inputDateTime[0].split(" ", 2); //to get the desc
                 String[] byInfo = inputDateTime[1].split(" ", 2); // to the split the by/at info
@@ -82,6 +99,12 @@ public class Duke {
                 }
             }
             else if (inputs[0].equals("event")) {
+                int inputSize = inputs.length;
+                if (inputSize == 1) {
+                    System.out.println("☹ OOPS!!! The description of a " + inputs[0] + " cannot be empty.");
+                    continue;
+                }
+
                 System.out.println("Got it. I've added this task: ");
                 String[] commandInfo = inputDateTime[0].split(" ", 2); //to get the desc
                 String[] byInfo = inputDateTime[1].split(" ", 2); // to the split the by/at info
@@ -98,6 +121,9 @@ public class Duke {
                 else {
                     System.out.println("Now you have " + listSize + " task in the list.");
                 }
+            }
+            else {
+                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
     }
