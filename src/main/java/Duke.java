@@ -18,8 +18,12 @@ public class Duke {
         System.out.println("What can I do for you?\n");
 
         while(true){
+            //initial input
             String Input = input.nextLine();
+            //command and number
             String[] inputs = Input.split(" ");
+            //command and date&time
+            String[] inputDateTime = Input.split ("/");
 //            System.out.println(Input);
             if (Input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
@@ -28,7 +32,8 @@ public class Duke {
             else if (Input.equals("list")){
                 int listSize = todoList.size();
                 for (int i = 0; i < listSize; i++ ) {
-                    System.out.println(i+1 + "." + "[" + todoList.get(i).getStatusIcon() + "] "+todoList.get(i).desc);
+                    String printTask = todoList.get(i).getTask();
+                    System.out.println(i+1 + "." + printTask);
                 }
             }
             else if (inputs[0].equals("done")){
@@ -36,17 +41,68 @@ public class Duke {
                 //Task number set the icon to done
                 todoList.get(numIndex-1).makeDone();
                 System.out.println("Nice! I've marked this task as done");
-                String icon = todoList.get(numIndex-1).getStatusIcon();
-                String desc = todoList.get(numIndex-1).desc;
-                System.out.println("[" + icon + "] " + desc);
+                String printTask = todoList.get(numIndex-1).getTask();
+                System.out.println(printTask);
+            }
+            else if (inputs[0].equals("todo")) {
+                System.out.println("Got it. I've added this task: ");
+                String[] commandInfo = inputDateTime[0].split(" ", 2);
+//                String[] byInfo = inputDateTime[1].split(" ", 2);
+                Todo todo = new Todo(commandInfo[1]);
+                String printTask = todo.getTask();
+                System.out.println(printTask);
+                todoList.add(todo);
+
+                //print size of list
+                int listSize = todoList.size();
+                if (listSize > 1){
+                    System.out.println("Now you have " + listSize + " tasks in the list.");
+                }
+                else {
+                    System.out.println("Now you have " + listSize + " task in the list.");
+                }
+
+            }
+            else if (inputs[0].equals("deadline")) {
+                System.out.println("Got it. I've added this task: ");
+                String[] commandInfo = inputDateTime[0].split(" ", 2); //to get the desc
+                String[] byInfo = inputDateTime[1].split(" ", 2); // to the split the by/at info
+                Deadline deadline = new Deadline(commandInfo[1], byInfo[1]); //insert desc and other info
+                String printTask = deadline.getTask();
+                System.out.println(printTask);
+                todoList.add(deadline);
+
+                //print size of list
+                int listSize = todoList.size();
+                if (listSize > 1){
+                    System.out.println("Now you have " + listSize + " tasks in the list.");
+                }
+                else {
+                    System.out.println("Now you have " + listSize + " task in the list.");
+                }
+            }
+            else if (inputs[0].equals("event")) {
+                System.out.println("Got it. I've added this task: ");
+                String[] commandInfo = inputDateTime[0].split(" ", 2); //to get the desc
+                String[] byInfo = inputDateTime[1].split(" ", 2); // to the split the by/at info
+                Event event = new Event(commandInfo[1], byInfo[1]); //insert desc and other info
+                String printTask = event.getTask();
+                System.out.println(printTask);
+                todoList.add(event);
+
+                //print size of list
+                int listSize = todoList.size();
+                if (listSize > 1){
+                    System.out.println("Now you have " + listSize + " tasks in the list.");
+                }
+                else {
+                    System.out.println("Now you have " + listSize + " task in the list.");
+                }
             }
             else if (Input.equals(" ")){
                 continue;
             }
-            else {
-                todoList.add(new Task(Input));
-                System.out.println("added:" + Input);
-            }
+
         }
     }
 }
