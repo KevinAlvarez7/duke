@@ -8,6 +8,6 @@ public class Event extends Task {
 
     public String getTask(){
         String taskString = super.getTask();
-        return "[E]" + taskString + "(by: " + this.by + ")";
+        return "[E]" + taskString + "(at: " + this.by + ")";
     }
 }

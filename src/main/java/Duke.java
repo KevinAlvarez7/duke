@@ -52,6 +52,29 @@ public class Duke {
                 String printTask = todoList.get(numIndex-1).getTask();
                 System.out.println(printTask);
             }
+            else if (inputs[0].equals("delete")){
+                int inputSize = inputs.length;
+                if (inputSize == 1) {
+                    System.out.println("☹ OOPS!!! Sorry you'd have to include the index of your task.");
+                    continue;
+                }
+
+                int numIndex = Integer.parseInt(inputs[1]); //get the number to delete
+                //Task number set the icon to done
+                String printTask = todoList.get(numIndex-1).getTask();
+                System.out.println("Noted. I've removed this task:");
+                System.out.println(printTask);
+                todoList.remove(numIndex-1); //delete TASK
+
+                int listSize = todoList.size();
+                if (listSize > 1){
+                    System.out.println("Now you have " + listSize + " tasks in the list.");
+                }
+                else {
+                    System.out.println("Now you have " + listSize + " task in the list.");
+                }
+            }
+
             else if (inputs[0].equals("todo")) {
                 int inputSize = inputs.length;
                 if (inputSize == 1) {
