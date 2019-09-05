@@ -1,7 +1,10 @@
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.io.Serializable;
 
 //A-classes
-public class Task {
+public class Task implements Serializable {
+    private static final long serialVersionUID = 1L;
     protected String desc;
     protected boolean isDone;
 

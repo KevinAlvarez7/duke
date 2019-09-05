@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.*;
 
@@ -6,7 +8,7 @@ public class Duke {
 
     public static ArrayList<Task> todoList = new ArrayList<Task>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -122,6 +124,13 @@ public class Duke {
                     System.out.println("Now you have " + listSize + " task in the list.");
                 }
             }
+//            else if (Input.equals("save")){
+//                FileWriter writer = new FileWriter("output.txt");
+//                for(Task str: todoList) {
+//                    writer.write(str + System.lineSeparator());
+//                }
+//                writer.close();
+//            }
             else {
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
