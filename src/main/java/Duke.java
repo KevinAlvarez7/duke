@@ -75,6 +75,23 @@ public class Duke {
                 }
             }
 
+            else if (inputs[0].equals("find")) {
+                int inputSize = inputs.length;
+                if (inputSize == 1) {
+                    System.out.println("☹ OOPS!!! Sorry you'd have to include the index of your task.");
+                    continue;
+                }
+
+                ArrayList <Integer> indexArr = Search.getIndex(todoList,inputs[1]);
+                int indexArrSize = indexArr.size();
+                System.out.println("Here are the matching tasks in your list:");
+                for (int i = 0; i < indexArrSize; i++){
+                    int numIndex = indexArr.get(i);
+                    String printTask = todoList.get(numIndex).getTask();
+                    System.out.println(printTask);
+                }
+            }
+
             else if (inputs[0].equals("todo")) {
                 int inputSize = inputs.length;
                 if (inputSize == 1) {
