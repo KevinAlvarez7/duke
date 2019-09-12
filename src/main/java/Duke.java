@@ -20,53 +20,65 @@ public class Duke {
         System.out.println("What can I do for you?\n");
 
         while(true){
-            //initial input
-            String Input = input.nextLine();
-            //command and number
-            String[] inputs = Input.split(" ");
-            //command and date&time
-            String[] inputDateTime = Input.split ("/");
-//            System.out.println(Input);
+
+            String Input = input.nextLine(); //initial input
+
+            String[] inputs = Input.split(" "); //command and number
+
+            String[] inputDateTime = Input.split ("/"); //command and date&time
+
+            //END CODE
             if (Input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             }
+
+            //LIST
             else if (Input.equals("list")){
                 int listSize = todoList.size();
+
+                //printing Tasks
                 for (int i = 0; i < listSize; i++ ) {
                     String printTask = todoList.get(i).getTask();
                     System.out.println(i+1 + "." + printTask);
                 }
             }
+
+            //DONE
             else if (inputs[0].equals("done")){
                 int inputSize = inputs.length;
+
+                //Error Messages
                 if (inputSize == 1) {
-                    System.out.println("☹ OOPS!!! Sorry you'd have to include the index of your task.");
+                    DukeExceptions.noIndexErrorMessage();
                     continue;
                 }
 
-                int numIndex = Integer.parseInt(inputs[1]);
-                //Task number set the icon to done
-                todoList.get(numIndex-1).makeDone();
-                System.out.println("Nice! I've marked this task as done");
-                String printTask = todoList.get(numIndex-1).getTask();
-                System.out.println(printTask);
+                Done.finishTask(todoList, inputs[1]);
+
             }
+
+            //DELETE
             else if (inputs[0].equals("delete")){
                 int inputSize = inputs.length;
+
+                //Error Messages
                 if (inputSize == 1) {
-                    System.out.println("☹ OOPS!!! Sorry you'd have to include the index of your task.");
+                    DukeExceptions.noIndexErrorMessage();
                     continue;
                 }
 
-                int numIndex = Integer.parseInt(inputs[1]); //get the number to delete
-                //Task number set the icon to done
+                int numIndex = Integer.parseInt(inputs[1]); //parsing of strings to ge the index of task to delete
+
                 String printTask = todoList.get(numIndex-1).getTask();
+
+                //Removing Tasks
                 System.out.println("Noted. I've removed this task:");
                 System.out.println(printTask);
                 todoList.remove(numIndex-1); //delete TASK
 
                 int listSize = todoList.size();
+                //Print out acknowledgement of Tasks
                 if (listSize > 1){
                     System.out.println("Now you have " + listSize + " tasks in the list.");
                 }
@@ -75,10 +87,11 @@ public class Duke {
                 }
             }
 
+            //FIND
             else if (inputs[0].equals("find")) {
                 int inputSize = inputs.length;
                 if (inputSize == 1) {
-                    System.out.println("☹ OOPS!!! Sorry you'd have to include the index of your task.");
+                    DukeExceptions.noIndexErrorMessage();
                     continue;
                 }
 
@@ -95,7 +108,7 @@ public class Duke {
             else if (inputs[0].equals("todo")) {
                 int inputSize = inputs.length;
                 if (inputSize == 1) {
-                    System.out.println("☹ OOPS!!! The description of a " + inputs[0] + " cannot be empty.");
+                    DukeExceptions.noDescMessage(inputs[0]);
                     continue;
                 }
                 System.out.println("Got it. I've added this task: ");
@@ -119,7 +132,7 @@ public class Duke {
             else if (inputs[0].equals("deadline")) {
                 int inputSize = inputs.length;
                 if (inputSize == 1) {
-                    System.out.println("☹ OOPS!!! The description of a " + inputs[0] + " cannot be empty.");
+                    DukeExceptions.noDescMessage(inputs[0]);
                     continue;
                 }
 
@@ -143,7 +156,7 @@ public class Duke {
             else if (inputs[0].equals("event")) {
                 int inputSize = inputs.length;
                 if (inputSize == 1) {
-                    System.out.println("☹ OOPS!!! The description of a " + inputs[0] + " cannot be empty.");
+                    DukeExceptions.noDescMessage(inputs[0]);
                     continue;
                 }
 
@@ -172,7 +185,7 @@ public class Duke {
 //                writer.close();
 //            }
             else {
-                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                DukeExceptions.invalidCommand();
             }
         }
     }
